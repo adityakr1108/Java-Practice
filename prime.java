@@ -1,7 +1,7 @@
 import java.util.*;
 
 //  basic method
-class prime{
+public class prime{
 public static void main(String [] args){
     Scanner sc = new Scanner(System.in);
     int n = sc.nextInt();
@@ -21,5 +21,3 @@ public static boolean isPrime(int n){
     return true;
 }
 }
-
-class 
