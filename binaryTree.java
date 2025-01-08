@@ -1,3 +1,4 @@
+import java.util.*;
 public class binaryTree{
 static class Node{
     int data;
@@ -45,8 +46,44 @@ public static void postorder(Node root){
     preorder(root.right);
     System.out.print(root.data + " ");
 }
+public static void levelOrder(Node root){
+    if(root == null){
+        return;
+    }
+    Queue<Node> q = new LinkedList<>();
+    q.add(root);
+    q.add(null);
+    while(!q.isEmpty()){
+        Node temp = q.remove();
+        if(temp == null){
+            System.out.println();
+            if(q.isEmpty()){
+                break;
+            } else{
+                q.add(null);
+            }
+        }
+        else{
+            System.out.print(temp.data + " ");
+            if(temp.left != null){
+                q.add(temp.left);
+            }
+            if(temp.right != null){
+                q.add(temp.right);
+            }   
+        }
+    }
+}
 
-public static void main(String[] rgs){
+public static int height(Node root){
+    if(root == null){
+        return 0;
+    }
+    int height = 1 + Math.max(height(root.left), height(root.right));
+    return height;
+}
+
+public static void main(String[] args){
     int nodes[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
     binaryTree tree = new binaryTree();
     Node root = tree.buildTree(nodes);
@@ -54,8 +91,13 @@ public static void main(String[] rgs){
     tree.inorder(root);
     System.out.println();
     tree.preorder(root);
-    System.out.println();
+    System.out.println();   
     tree.postorder(root);
+    System.out.println();
+    tree.levelOrder(root);
+    
+    System.out.println(tree.height(root));
+
 }
 
 }
