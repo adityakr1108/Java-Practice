@@ -32,9 +32,23 @@ public class trie{
              }
              curr = curr.children[a];
         }
-        return curr.eow == true;
+        return curr.eow;
 
     }
+    
+    public static boolean startsWith(String word){ // O(L) where L is the length of the word
+        Node curr = root;
+        for(int i = 0;i<word.length();i++){
+            int a = word.charAt(i) - 'a';
+             if(curr.children[a] == null){
+                return false;
+             }
+             curr = curr.children[a];
+        }
+        return true;
+
+    }
+    
     public static void main(String[] args) {
         String[] words = {"the","a","there","their","any","thee"};
         for(int i = 0;i<words.length;i++){
